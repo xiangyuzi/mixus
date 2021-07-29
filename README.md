@@ -1,24 +1,57 @@
 # README
+## Usersテーブル
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+| Column             | Type    | Options     |
+| ------------------ | ------- | ----------- |
+| email              | string  | null: false |
+| encrypted_password | string  | null: false |
+| last_name          | string  | null: false |
+| first_name         | string  | null: false |
+| birth_date         | date    | null: false |
+| prefecture_id      | integer | null: false |
+| profile            | text    |             |
 
-Things you may want to cover:
+### Association
 
-* Ruby version
+- has_many :ideas
+- has_many :orders
 
-* System dependencies
+## Ideasテーブル
 
-* Configuration
+| Column      | Type       | Options           |
+| ----------- | ---------- | ----------------- |
+| catchphrase | string     | null: false       |
+| detail      | text       | null: false       |
+| category_id | integer    | null: false       |
+| user        | references | foreign_key: true |
 
-* Database creation
+### Association
 
-* Database initialization
+- belongs_to :user
+- has_one :order
 
-* How to run the test suite
+## Ordersテーブル
 
-* Services (job queues, cache servers, search engines, etc.)
+| Column      | Type       | Options           |
+| ----------- | ---------- | ----------------- |
+| deadline_id | integer    | null: false       |
+| email       | string     | null: false       |
+| user        | references | foreign_key: true |
+| item        | references | foreign_key: true |
 
-* Deployment instructions
+### Association
 
-* ...
+- belongs_to :user
+- belongs_to :item
+- has_one :creation
+
+## Creationsテーブル
+
+| Column      | Type       | Options           |
+| ----------- | ---------- | ----------------- |
+| comment     | text       | null: false       |
+| deadline_id | integer    | null: false       |
+| order       | references | foreign_key: true |
+
+### Association
+- belongs_to :order
