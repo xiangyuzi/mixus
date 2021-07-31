@@ -6,7 +6,7 @@
     </h1>
   </div>
 
-  <%# <%= render 'shared/error_messages', model: f.object %> 
+  <%= render 'shared/error_messages', model: f.object %>
 
   <div class="form-group">
     <div class='form-text-wrap'>
@@ -15,7 +15,7 @@
     </div>
     <div class='input-name-wrap'>
       <%= f.text_area :last_name, class:"input-name", id:"last-name", placeholder:"例) 山田" %>
-      <%= f.text_area :first_name, class:"input-name", id:"first-name", placeholder:"例) 陸太郎" %>
+      <%= f.text_area :first_name, class:"input-name", id:"first-name", placeholder:"例) 太郎" %>
     </div>
   </div> 
   <div class="form-group">
@@ -49,7 +49,8 @@
     </p>
   </div>
 
-  <div class="form-group">
+  <div class="form-group">    
+
     <div class='form-text-wrap'>
       <label class="form-text">生年月日</label>
       <span class="indispensable">必須</span>
@@ -68,18 +69,22 @@
                   "<p> 年 </p>", "<p> 月 </p>") + "<p> 日 </p>" %>
     </div>
     <div class="weight-bold-text">
-      発送元の地域
-      <span class="indispensable">必須</span>
+    住んでいる地域
+    <span class="indispensable">必須</span>
     </div>
-    <%# <%= f.collection_select(:prefecture_id ,"",  "hoge", "fuga", {}, {class:"select-box", id:"item-prefecture"}) %>    
+    <%= f.collection_select(:prefecture_id , Prefecture.all, :id, :name, {}, {class:"select-box", id:"user-prefecture"}) %> 
     <p class='info-text'>※ 本人情報は正しく入力してください。会員登録後、修正するにはお時間を頂く場合があります。</p>
+    <div class="field">
+      <%= f.label :profile, "プロフィール" %><br />
+      <%= f.text_area :profile, class:"profile__text", id:"user_profile", placeholder:"かけだしのエンジニアです！いろいろ創作していきたいと思います。よろしくお願いします！" %>
+    </div>
   </div>
   <div class="form-group">
-    <h2 class='form-bottom-text'>
+    <p class='form-bottom-text'>
       「会員登録」のボタンを押すことにより、
       <span>利用規約</span>
       <br>に同意したものとみなします
-    </h2>
+    </p>
   </div>
   <div class='register-btn'>
     <%= f.submit "会員登録" ,class:"register-red-btn" %>

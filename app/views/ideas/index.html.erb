@@ -1,20 +1,33 @@
 <nav class="navbar navbar-expand-xl navbar-light" style="background-color: #e3f2fd;">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">MIXUS</a>
+    <a class="navbar-brand" href=http://localhost:3000>MIXUS</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarLight" aria-controls="navbarLight" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse show" id="navbarLight">
+     <% if user_signed_in? %>
       <ul class="navbar-nav me-auto mb-2 mb-xl-0">
         <li class="nav-item">
           <%# <%= link_to "ログイン", "#", class="nav-link active" aria-current="page" %> 
-          <a class="nav-link active" aria-current="page" href="#">ログイン</a>
+          <a class="nav-link active" aria-current="page" href="" >新規投稿</a>
         </li>
         <li class="nav-item">
-          <%= link_to "新規登録", new_user_registration_path %>
-          <%# <a class="nav-link active" aria-current="page" href="localhost:3000/users/sign_up(.:format)">新規登録</a> %>
+          <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class:"nav-link active", 'aria-current': :'page' %>
+          <%# <a class="nav-link active" aria-current="page" href="http://localhost:3000/users/sign_out">ログアウト</a> %>
+        </li>
+      </ul>     
+     <% else %>
+      <ul class="navbar-nav me-auto mb-2 mb-xl-0">
+        <li class="nav-item">
+          <%# <%= link_to "ログイン", "#", class="nav-link active" aria-current="page" %> 
+          <a class="nav-link active" aria-current="page" href=http://localhost:3000/users/sign_in>ログイン</a>
+        </li>
+        <li class="nav-item">
+          <%# <%= link_to "新規登録", new_user_registration_path %>
+          <a class="nav-link active" aria-current="page" href="http://localhost:3000/users/sign_up">新規登録</a>
         </li>
       </ul>
+      <% end %>
       <form class="d-flex">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-primary" type="submit">Search</button>
