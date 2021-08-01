@@ -5,8 +5,8 @@
       <%= idea.catchphrase %> 
     </div>
     <div class="card-text">
-    <%= idea.detail %>
+    <%= idea.category.name %>
     </div>
-    <%= link_to "詳細へ", root_path, class:"btn btn-primary" %>
+    <%= link_to "詳細へ", idea_path(idea.id), class:"btn btn-primary" %>
   </div>
 </div>
