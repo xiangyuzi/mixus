@@ -3,6 +3,7 @@ class Idea < ApplicationRecord
   has_one_attached :image
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category
+  has_one :order
 
   validates :catchphrase, presence: true
   validates :detail, presence: true
