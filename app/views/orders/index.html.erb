@@ -1,0 +1,48 @@
+<div class='transaction-contents'>
+  <div class='transaction-main'>
+    <h1 class='transaction-title-text'>
+      idea内容の確認
+    </h1>
+    <%# 購入内容の表示 %>
+    <div class='buy-item-info'>
+      <%= image_tag @idea.image, class: 'buy-item-img' %>
+      <div class='buy-item-right-content'>
+        <h2 class='buy-item-text'>
+          <%= @idea.catchphrase %>
+        </h2>
+        <div class='buy-item-price'>
+          <%= @idea.detail %>
+        </div>
+      </div>
+    </div>
+    <%# /購入内容の表示 %>
+
+    <%= form_with model: @order, url: idea_orders_path, id: 'charge-form', class: 'transaction-form-wrap',local: true do |f| %>
+    <%= render 'shared/error_messages', model: f.object %>
+    
+    <%# 配送先の入力 %>
+    <div class='shipping-address-form'>
+      <h1 class='info-input-haedline'>
+        much up条件
+      </h1>
+      <div class="form-group">
+        <div class='form-text-wrap'>
+          <label class="form-text">納期</label>
+          <span class="indispensable">必須</span>
+        </div>
+        <%= f.collection_select(:deadline_id, Deadline.all, :id, :name, {}, {class:"select-box", id:"prefecture"}) %>
+      </div>
+      <div class="form-group">
+        <div class='form-text-wrap'>
+          <label class="form-text">email</label>
+          <span class="indispensable">必須</span>
+        </div>
+        <%= f.text_field :email, class:"input-default", id:"city", placeholder:"example@..."%>
+      </div>
+    <%# /配送先の入力 %>
+    <div class='buy-btn'>
+      <%= f.submit "much up!" ,class:"buy-red-btn", id:"button" %>
+    </div>
+    <% end %>
+  </div>
+</div>
