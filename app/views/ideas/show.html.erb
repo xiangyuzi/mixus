@@ -35,17 +35,17 @@
     <div class="prototype__comments">
       <%# match up ユーザーには以下のコメント投稿フォームを表示する %>
       <%# <% if current_user.id == @order.user_id %> 
-        <%= form_with model: [@idea, @creation],local: true do |f|%>
-          <div class="field">
-            <%= f.label :image, "作品の画像" %><br />
-            <%= f.file_field :image, id:"prototype_image" %>
+        <%= form_with model: [@creation],local: true do |f|%>
+          <%# <div class="field">
+            <%= f.label :creation_image, "作品の画像" %><br />
+            <%# <%= f.file_field :creation_image, id:"prototype_image" %>
+          <%# </div>  %>
+          <div class='form-text-wrap'>
+            <label class="form-text">作成期間</label>
+            <span class="indispensable">必須</span>
           </div>
-        <div class='form-text-wrap'>
-          <label class="form-text">納期</label>
-          <span class="indispensable">必須</span>
-        </div>
-        <%= f.collection_select(:deadline_id, Deadline.all, :id, :name, {}, {class:"select-box", id:"prefecture"}) %>
-        </div>
+          <%= f.collection_select(:deadline_id, Deadline.all, :id, :name, {}, {class:"select-box", id:"prefecture"}) %>
+          </div>
           <div class="field">
             <%= f.label :comment, "コメント" %><br />
             <%= f.text_field :comment, id:"comment_text" %>
