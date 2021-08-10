@@ -15,6 +15,7 @@
 
 - has_many :ideas
 - has_many :orders
+- has_many :creations
 
 ## Ideasテーブル
 
@@ -29,6 +30,7 @@
 
 - belongs_to :user
 - has_one :order
+- has_one :creation
 
 ## Ordersテーブル
 
@@ -43,7 +45,6 @@
 
 - belongs_to :user
 - belongs_to :item
-- has_one :creation
 
 ## Creationsテーブル
 
@@ -54,4 +55,5 @@
 | order       | references | foreign_key: true |
 
 ### Association
-- belongs_to :order
+- belongs_to :user
+- belongs_to :idea
