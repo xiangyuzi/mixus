@@ -12,4 +12,5 @@ class User < ApplicationRecord
 
   belongs_to :Prefecture
   has_many :ideas
+  has_many :creations
 end

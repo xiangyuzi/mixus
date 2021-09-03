@@ -6,17 +6,17 @@
       </p>
       <%= link_to "by #{@idea.user.first_name}", user_path(@idea.user.id), class: :prototype__user %>
       <%# プロトタイプの投稿者とログインしているユーザーが同じであれば以下を表示する %>
-    <% if user_signed_in? && @idea.order == nil %>
-      <% if current_user.id == @idea.user_id %>
-        <P class="idea-edit">
-        <%= link_to "編集する", edit_idea_path, method: :get, class: "item-red-btn" %>
-        <p class="or-text">or</p>
-        <%= link_to "削除する", idea_path, method: :delete, class:"item-destroy" %>
-      <% else %>
-        <p class="much-up">
-        <%= link_to "much up画面に進む", idea_orders_path(@idea.id) ,class:"item-red-btn"%>
+      <% if user_signed_in? && @idea.order == nil %>
+        <% if current_user.id == @idea.user_id %>
+          <P class="idea-edit">
+          <%= link_to "編集する", edit_idea_path, method: :get, class: "item-red-btn" %>
+          <p class="or-text">or</p>
+          <%= link_to "削除する", idea_path, method: :delete, class:"item-destroy" %>
+        <% else %>
+          <p class="much-up">
+          <%= link_to "much up画面に進む", idea_orders_path(@idea.id) ,class:"item-red-btn"%>
+        <% end %>
       <% end %>
-    <% end %>
 
       <div class="prototype__image">
         <%= image_tag @idea.image %>
@@ -28,8 +28,38 @@
             <%= @idea.detail %>
           <p class="detail__title">この形でつくってほしい！</p>
             <%= @idea.category.name %>
-          
           </p>
+        </div>
+      </div>
+      <div class="prototype__comments">
+        <%# ログインしているユーザーには以下のコメント投稿フォームを表示する %>
+        <% if user_signed_in? %>
+          <%= form_with model: [@idea, @creation],local: true do |f|%>
+            <div class="field">
+              <%= f.label :image, "作品の画像" %><br />
+              <%= f.file_field :image, id:"prototype_image" %><br />
+              <%= f.label :day, "作成所要期間" %><br />
+              <%= f.text_field :day, placeholder: "例）7日間、30時間" %><br />
+              <%= f.label :comment, "コメント" %><br />
+              <%= f.text_area :comment, id:"comment_text", rows: "3" %>
+            </div>
+            <div class="actions">
+              <%= f.submit "送信する", class: :form__btn  %>
+            </div>
+          <% end %>
+        <% end %>
+        <div class=creation__wrapping>
+          <div class="creation__image">
+            <%= image_tag @idea.creation.image %>
+          </div>
+          <div class="creation__body">
+            <div class="creation__detail">
+              <p class=detail__days>作成にかかった期間</p>
+                <%= @idea.creation.day %>
+              <p class="detail__comment">作品詳細</p>
+                <%= @idea.creation.comment %>
+            </div>
+          </div>
         </div>
       </div>
     </div>
