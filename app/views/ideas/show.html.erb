@@ -48,19 +48,21 @@
             </div>
           <% end %>
         <% end %>
-        <div class=creation__wrapping>
-          <div class="creation__image">
-            <%= image_tag @idea.creation.image %>
-          </div>
-          <div class="creation__body">
-            <div class="creation__detail">
-              <p class=detail__days>作成にかかった期間</p>
-                <%= @idea.creation.day %>
-              <p class="detail__comment">作品詳細</p>
-                <%= @idea.creation.comment %>
+        <% if @idea.creation.present? %>
+          <div class=creation__wrapping>
+            <div class="creation__image">
+              <%= image_tag @creations.image %>
+            </div>
+            <div class="creation__body">
+              <div class="creation__detail">
+                <p class=detail__days>作成にかかった期間</p>
+                  <%= @idea.creation.day %>
+                <p class="detail__comment">作品詳細</p>
+                  <%= @idea.creation.comment %>
+              </div>
             </div>
           </div>
-        </div>
+        <% end %>
       </div>
     </div>
   </div>
