@@ -34,26 +34,30 @@
         </div>
       </div>
       <div class="prototype__comments">
-        <%# ログインしているユーザーには以下のコメント投稿フォームを表示する %>
-        <% if user_signed_in? %>
-          <%= form_with model: [@idea, @creation],local: true do |f|%>
-            <div class="field">
-              <%= f.label :image, "作品の画像" %><br />
-              <%= f.file_field :image, id:"prototype_image" %><br />
-              <%= f.label :day, "作成所要期間" %><br />
-              <%= f.text_field :day, placeholder: "例）7日間、30時間" %><br />
-              <%= f.label :comment, "コメント" %><br />
-              <%= f.text_area :comment, id:"comment_text", rows: "3" %>
-            </div>
-            <div class="actions">
-              <%= f.submit "送信する", class: :form__btn  %>
-            </div>
+        <%# マッチングしたユーザーにのみ以下の作品投稿フォームを表示する %>
+        <% if @idea.order.present? && @idea.creation == nil %>
+          <% if current_user.id == @idea.order.user_id %>
+            <%= form_with model: [@idea, @creation],local: true do |f|%>
+              <div class="field">
+                <%= f.label :image, "作品の画像" %><br />
+                <%= f.file_field :image, id:"prototype_image" %><br />
+                <%= f.label :day, "作成所要期間" %><br />
+                <%= f.text_field :day, placeholder: "例）7日間、30時間" %><br />
+                <%= f.label :comment, "コメント" %><br />
+                <%= f.text_area :comment, id:"comment_text", rows: "3" %>
+              </div>
+              <div class="actions">
+                <%= f.submit "送信する", class: :form__btn  %>
+              </div>
+            <% end %>
           <% end %>
         <% end %>
+        <%# マッチングユーザーからの投稿作品がある場合のみ以下の詳細を表示する %>
         <% if @idea.creation.present? %>
           <div class=creation__wrapping>
             <div class="creation__image">
-              <%= image_tag @creations.image %>
+              <%= image_tag @creations.image %><br/>
+              <%= link_to "by #{@creations.user.first_name}", user_path(@idea.user.id), class: :prototype__user %>
             </div>
             <div class="creation__body">
               <div class="creation__detail">
