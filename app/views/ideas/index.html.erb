@@ -1,11 +1,14 @@
 <%= render "shared/header" %>
 
-<div class=main>
-  <div>
-  <%= image_tag "image5.jpg", class:"top-pict" %>
+<main class="main">
+  <div class="inner">
+    <div>
+    <%= image_tag "mixus-top.png", class:"top-pict" %>
+    </div>
+    <div class="card__wrapper">
+      <%= render partial: "idea", collection: @ideas %>
+    </div>
   </div>
-  <div class="card__wrapper">
-    <%= render partial: "idea", collection: @ideas %>
-  </div>
+</main>
 
 <%= render "shared/footer" %>

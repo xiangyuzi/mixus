@@ -2,5 +2,12 @@
    display: flex;
    align-items: center;
    width: 100vw;
-   height: 30vw;
+   height: 50vw;
+ }
+
+ .fst-italic {
+   text-align: center;
+   color: gray;
+   font-size: small;
+   margin: 0 auto;
  }

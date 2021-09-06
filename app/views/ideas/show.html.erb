@@ -36,7 +36,7 @@
       <div class="prototype__comments">
         <%# マッチングしたユーザーにのみ以下の作品投稿フォームを表示する %>
         <% if @idea.order.present? && @idea.creation == nil %>
-          <% if current_user.id == @idea.order.user_id %>
+          <% if user_signed_in? && current_user.id == @idea.order.user_id %>
             <%= form_with model: [@idea, @creation],local: true do |f|%>
               <div class="field">
                 <%= f.label :image, "作品の画像" %><br />
@@ -57,7 +57,7 @@
           <div class=creation__wrapping>
             <div class="creation__image">
               <%= image_tag @creations.image %><br/>
-              <%= link_to "by #{@creations.user.first_name}", user_path(@idea.user.id), class: :prototype__user %>
+              <%= link_to "by #{@creations.user.first_name}", user_path(@creations.user.id), class: :prototype__user %>
             </div>
             <div class="creation__body">
               <div class="creation__detail">
