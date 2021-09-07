@@ -1,10 +1,10 @@
-<nav class="navbar navbar-expand-xl navbar-light" style="background-color: white;">
+<nav class="navbar navbar-expand-xl navbar-dark bg-dark">
   <div class="container-fluid">
-    <a class="navbar-brand" href=http://localhost:3000>MIXUS</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarLight" aria-controls="navbarLight" aria-expanded="false" aria-label="Toggle navigation">
+    <a class="navbar-brand" href=http://localhost:3000 style="color: white;">MIXUS</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarDark" aria-controls="navbarDark" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse show" id="navbarLight">
+    <div class="collapse navbar-collapse show" id="navbarDark">
      <% if user_signed_in? %>
       <ul class="navbar-nav me-auto mb-2 mb-xl-0">
         <li class="nav-item">
@@ -29,7 +29,7 @@
       <% end %>
       <form class="d-flex">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-primary" type="submit">Search</button>
+        <button class="btn btn-outline-light" type="submit">Search</button>
       </form>
     </div>
   </div>
