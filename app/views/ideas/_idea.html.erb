@@ -8,8 +8,11 @@
       <span class="card-title-text"><%= idea.catchphrase %></span> 
     </div>
     <div class="card-text">
-    <%= idea.category.name %>
+      <span class="card-text-style">希望のカタチ</span>
+      <span class="card-text-category"><%= idea.category.name %></span>
     </div>
-    <%= link_to "詳細へ", idea_path(idea.id), class:"btn btn-primary" %>
+    <div class="d-grid gap">
+    <%= link_to "詳細へ", idea_path(idea.id), class:"btn btn-light" %>
+    </div>
   </div>
 </div>
