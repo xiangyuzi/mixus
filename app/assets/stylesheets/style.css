@@ -78,6 +78,7 @@ div.card-wrapper {
 div.card {
   width: calc((100% - 60px) /3 );
   margin: 0 20px 40px 0;
+  height: 450px;
 }
  div.card-img, .card-img-bottom, .card-img-top {
   height: 60%;

@@ -1,8 +1,8 @@
 <div class="card">
-    <%= image_tag idea.image, class:"card-img-top" %>
-      <span class="user-name">
-        <%= link_to "by #{idea.user.first_name}", user_path(idea.user.id), class:"name" %>
-      </span>
+  <%= image_tag idea.image, class:"card-img-top" %>
+    <span class="user-name">
+      <%= link_to "by #{idea.user.first_name}", user_path(idea.user.id), class:"name" %>
+    </span>
   <div class="card-body">
     <div class="card-title">
       <span class="card-title-text"><%= idea.catchphrase %></span> 
