@@ -111,7 +111,7 @@ div.card-text span.card-text-category {
   margin-bottom: 1rem;
 }
 
-/*user-show*/
+/*users-show*/
 .user-header {
   font-size: 28px;
   margin-bottom: 15px;
@@ -145,6 +145,125 @@ div.card-text span.card-text-category {
   margin-bottom: 30px;
   flex-wrap: wrap;
   justify-content: flex-start;
+}
+
+/*ideas-show*/
+.item-wrapper {
+  width: 70%;
+  margin: 40px auto 40px;
+}
+.idea-image-wrapper {
+  
+}
+.idea-image {
+  display: block;
+  margin: 0 auto;
+}
+.idea-user {
+  display: block;
+  text-align: center;
+  color: black;
+}
+.idea-manage {
+  display: flex;
+  justify-content: center;
+  margin: 5px;
+}
+.idea-manage-btn{
+  display: block;
+  color:black;
+  text-decoration: none;
+  background-color: rgb(226, 226, 226);
+  border: 1px #999 solid;
+  border-radius: 3px;
+  padding: 1px 10px;
+  margin: 0 10px;
+}
+.match-up-btn {
+  display: block;
+  color:black;
+  text-decoration: none;
+  background-color: rgb(255, 235, 221);
+  border: 1px #999 solid;
+  border-radius: 3px;
+  padding: 1px 10px;
+  margin: 10px 10px 0;
+}
+.idea-table {
+  margin: 0 auto;
+  border-collapse: collapse;
+  margin-bottom: 35px;
+  width: 80%;
+  margin-top: 20px;
+}
+.idea-table__col1 {
+  text-align: center;
+  font-size: 13px;
+  background: #fafafa;
+  border-collapse: collapse;
+  border: 1px solid #f5f5f5;
+  width: 30%;
+  padding: 8px;
+}
+.idea-table__col2 {
+  text-align: left;
+  border: 1px solid #f5f5f5;
+  border-collapse: collapse;
+  width: 70%;
+  padding: 10px 8px;
+}
+
+/* orders-index */
+.title-text {
+  text-align: center;
+  font-size: 28px;
+  margin: 20px;
+}
+.order-idea-table {
+  margin: 0 auto;
+  border-collapse: collapse;
+  margin-bottom: 35px;
+  width: 70%;
+  margin-top: 20px;
+}
+.order-idea-table__col1 {
+  text-align: center;
+  font-size: 13px;
+  background: #fafafa;
+  border-collapse: collapse;
+  border: 1px solid #f5f5f5;
+  width: 30%;
+  padding: 8px;
+}
+.order-idea-table__col2 {
+  text-align: left;
+  border: 1px solid #f5f5f5;
+  border-collapse: collapse;
+  width: 70%;
+  padding: 10px 8px;
+}
+.order-form-wrapper {
+  margin: 20px;
+}
+.order-form {
+  margin: 0 auto;
+  width: 70%;
+}
+.match-up-wrapper {
+  display: flex;
+  justify-content: center;
+  margin: 30px 0;
+}
+.match-up {
+  display: block;
+  color:black;
+  font-size: 20px;
+  text-decoration: none;
+  background-color: rgb(255, 235, 221);
+  border: 1px #999 solid;
+  border-radius: 3px;
+  padding: 1px 10px;
+  margin: 10px 10px 0;
 }
 
 /* footer */

@@ -2,41 +2,50 @@
 
 <main class="main">
   <div class="inner">
-    <div class="prototype__wrapper">
-      <p class="prototype__hedding">
-        <%= @idea.catchphrase%>
-      </p>
-      <%= link_to "by #{@idea.user.first_name}", user_path(@idea.user.id), class: :prototype__user %>
-      <%# プロトタイプの投稿者とログインしているユーザーが同じであれば以下を表示する %>
+    <div class="item-wrapper">
+      <div class="idea-image-wrapper">
+      <%= image_tag @idea.image, class:"idea-image" %>
+      </div>
+      <%= link_to "by #{@idea.user.first_name}", user_path(@idea.user.id), class:"idea-user" %>
+      
+      <%# アイディアの投稿者とログインしているユーザーが同じであれば以下を表示する %>
       <% if user_signed_in? && @idea.order == nil %>
         <% if current_user.id == @idea.user_id %>
-          <P class="idea-edit">
-          <%= link_to "編集する", edit_idea_path, method: :get, class: "item-red-btn" %>
-          <p class="or-text">or</p>
-          <%= link_to "削除する", idea_path, method: :delete, class:"item-destroy" %>
+          <div class="idea-manage">
+            <%= link_to "編集", edit_idea_path, method: :get, class: "idea-manage-btn" %>
+            <%= link_to "削除", idea_path, method: :delete, class:"idea-manage-btn" %>
+          </div>
         <% else %>
-          <p class="much-up">
-          <%= link_to "much up画面に進む", idea_orders_path(@idea.id) ,class:"item-red-btn"%>
+          <div class="idea-manage">
+          <%= link_to "MATCH UP !", idea_orders_path(@idea.id) ,class:"match-up-btn" %>
+          </div>
         <% end %>
       <% end %>
 
-      <div class="prototype__image">
-        <%= image_tag @idea.image %>
-      </div>
-      <div class="prototype__body">
-        <div class="prototype__detail">
-          <p class="detail__title">詳細</p>
-          <p class="detail__message">
-            <%= @idea.detail %>
-          <p class="detail__title">この形でつくってほしい！</p>
-            <%= @idea.category.name %>
-          </p>
-        </div>
-      </div>
-      <div class="prototype__comments">
-        <%# マッチングしたユーザーにのみ以下の作品投稿フォームを表示する %>
+      <table class="idea-table">
+        <tbody>
+          <tr>
+            <th class="idea-table__col1">キャッチフレーズ</th>
+            <td class="idea-table__col2">
+              <%= @idea.catchphrase %>
+            </td>
+          </tr>
+          <tr>
+            <th class="idea-table__col1">詳細</th>
+            <td class="idea-table__col2">
+            <%= @idea.detail %></td>
+          </tr>
+          <tr>
+            <th class="idea-table__col1">このカタチで見てみたい！</th>
+            <td class="idea-table__col2"><%= @idea.category.name %></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <%# マッチングしたユーザーにのみ以下の作品投稿フォームを表示する %>
         <% if @idea.order.present? && @idea.creation == nil %>
           <% if user_signed_in? && current_user.id == @idea.order.user_id %>
+            <div class="prototype__comments">  
             <%= form_with model: [@idea, @creation],local: true do |f|%>
               <div class="field">
                 <%= f.label :image, "作品の画像" %><br />
