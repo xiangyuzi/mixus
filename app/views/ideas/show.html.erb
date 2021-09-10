@@ -3,8 +3,9 @@
 <main class="main">
   <div class="inner">
     <div class="item-wrapper">
+      <div class='title-text'>投稿アイディア</div>
       <div class="idea-image-wrapper">
-      <%= image_tag @idea.image, class:"idea-image" %>
+        <%= image_tag @idea.image, class:"idea-image" if @idea.image.attached? %>
       </div>
       <%= link_to "by #{@idea.user.first_name}", user_path(@idea.user.id), class:"idea-user" %>
       
@@ -43,42 +44,56 @@
       </table>
 
       <%# マッチングしたユーザーにのみ以下の作品投稿フォームを表示する %>
-        <% if @idea.order.present? && @idea.creation == nil %>
-          <% if user_signed_in? && current_user.id == @idea.order.user_id %>
-            <div class="prototype__comments">  
-            <%= form_with model: [@idea, @creation],local: true do |f|%>
-              <div class="field">
-                <%= f.label :image, "作品の画像" %><br />
-                <%= f.file_field :image, id:"prototype_image" %><br />
-                <%= f.label :day, "作成所要期間" %><br />
-                <%= f.text_field :day, placeholder: "例）7日間、30時間" %><br />
-                <%= f.label :comment, "コメント" %><br />
-                <%= f.text_area :comment, id:"comment_text", rows: "3" %>
-              </div>
-              <div class="actions">
-                <%= f.submit "送信する", class: :form__btn  %>
-              </div>
-            <% end %>
-          <% end %>
-        <% end %>
-        <%# マッチングユーザーからの投稿作品がある場合のみ以下の詳細を表示する %>
-        <% if @idea.creation.present? %>
-          <div class=creation__wrapping>
-            <div class="creation__image">
-              <%= image_tag @creations.image %><br/>
-              <%= link_to "by #{@creations.user.first_name}", user_path(@creations.user.id), class: :prototype__user %>
+      <% if @idea.order.present? && @idea.creation == nil %>
+        <% if user_signed_in? && current_user.id == @idea.order.user_id %>
+          <%= form_with model: [@idea, @creation],local: true do |f|%>
+          <div class="creation-form-wrapper">
+            <h2 class="creation-form-header">作品投稿フォーム</h2>
+            <div class="form-group">
+              <div class='form-text-wrap'>
+                <label class="form-text">作品の画像</label>
+                <span class="badge bg-dark">必須</span>
+              </div>  
+              <%= f.file_field :image, id:"creation-image" %>
             </div>
-            <div class="creation__body">
-              <div class="creation__detail">
-                <p class=detail__days>作成にかかった期間</p>
-                  <%= @idea.creation.day %>
-                <p class="detail__comment">作品詳細</p>
-                  <%= @idea.creation.comment %>
+            <div class="form-group">
+              <div class='form-text-wrap'>
+                <label class="form-text">制作期間</label>
+                <span class="badge bg-dark">必須</span>
               </div>
+              <%= f.text_field :day, class:"input-default", placeholder: "例）7日間、30時間" %>
+            </div>
+            <div class="form-group">
+              <div class='form-text-wrap'>
+                <label class="form-text">アイディア詳細</label>
+                <span class="badge bg-dark">必須</span>
+              </div>
+                <%= f.text_area :comment, class:"text-area-text", id:"creation_detail" %>
+            </div>
+            <div class="submit-btn">
+              <%= f.submit "送信する", class:"submit-btn-text" %>
             </div>
           </div>
+          <% end %>
         <% end %>
-      </div>
+      <% end %>
+      <%# マッチングユーザーからの投稿作品がある場合のみ以下の詳細を表示する %>
+      <% if @idea.creation.present? %>
+        <div class=creation__wrapping>
+          <div class="creation__image">
+            <%= image_tag @creations.image %><br/>
+            <%= link_to "by #{@creations.user.first_name}", user_path(@creations.user.id), class: :prototype__user %>
+          </div>
+          <div class="creation__body">
+            <div class="creation__detail">
+              <p class=detail__days>作成にかかった期間</p>
+                <%= @idea.creation.day %>
+              <p class="detail__comment">作品詳細</p>
+                <%= @idea.creation.comment %>
+            </div>
+          </div>
+        </div>
+      <% end %>
     </div>
   </div>
 </main>

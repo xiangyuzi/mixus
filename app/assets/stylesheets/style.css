@@ -94,6 +94,19 @@ div.card span.user-name .name {
   text-decoration-line: none;
   color:gray; 
 }
+.sold-out {
+  position: absolute;
+  top: 40%;
+  width: 100%;
+  text-align: center;
+  background-color: crimson;
+  transform: skewY(-10deg);
+}
+.sold-out>span {
+  color: #FFF;
+  font-size: 35px;
+  font: bold;
+}
 .card-title-text {
   display: block;
   text-align: center;
@@ -183,7 +196,7 @@ div.card-text span.card-text-category {
   display: block;
   color:black;
   text-decoration: none;
-  background-color: rgb(255, 235, 221);
+  background-color:beige;
   border: 1px #999 solid;
   border-radius: 3px;
   padding: 1px 10px;
@@ -212,7 +225,15 @@ div.card-text span.card-text-category {
   width: 70%;
   padding: 10px 8px;
 }
-
+.creation-form-wrapper {
+  margin: 60px 50px 40px;
+  background-color: beige;
+  padding: 30px 50px;
+}
+.creation-form-header {
+  font-size: 26px;
+  margin-bottom: 15px;
+} 
 /* orders-index */
 .title-text {
   text-align: center;
@@ -249,6 +270,10 @@ div.card-text span.card-text-category {
   margin: 0 auto;
   width: 70%;
 }
+.supplementary-text {
+  font-size: 15px;
+  color: #999;
+}
 .match-up-wrapper {
   display: flex;
   justify-content: center;
@@ -259,7 +284,7 @@ div.card-text span.card-text-category {
   color:black;
   font-size: 20px;
   text-decoration: none;
-  background-color: rgb(255, 235, 221);
+  background-color: beige;
   border: 1px #999 solid;
   border-radius: 3px;
   padding: 1px 10px;

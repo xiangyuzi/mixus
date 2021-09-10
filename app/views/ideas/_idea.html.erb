@@ -1,8 +1,17 @@
 <div class="card">
-  <%= image_tag idea.image, class:"card-img-top" %>
+  <% if idea.image.present? %>
+    <%= image_tag idea.image, class:"card-img-top" if idea.image.attached? %>
+  <% else %>
+    <%= image_tag "card-top.png", class:"card-img-top" %>
+  <% end %>
     <span class="user-name">
       <%= link_to "by #{idea.user.first_name}", user_path(idea.user.id), class:"name" %>
     </span>
+  <% if idea.order.present? %>
+    <div class='sold-out'>
+      <span>CLOSED</span>
+    </div>
+  <% end %>
   <div class="card-body">
     <div class="card-title">
       <span class="card-title-text"><%= idea.catchphrase %></span> 
