@@ -18,6 +18,8 @@ class IdeasController < ApplicationController
 
   def show
     @idea = Idea.find(params[:id])
+    @creation = Creation.new
+    @creations = @idea.creation
   end
 
   def edit

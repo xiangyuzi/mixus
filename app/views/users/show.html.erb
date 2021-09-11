@@ -1,33 +1,64 @@
+<%= render "shared/header" %>
+
 <div class="main">
   <div class="inner">
-    <div class="user__wrapper">
-      <h2 class="page-heading">
-        <%= "#{@user.first_name}さんの情報"%>
+    <div class="form-wrapper">
+      <h2 class="user-header">
+        <%= "#{@user.first_name}さんの情報" %>
       </h2>
       <table class="table">
         <tbody>
           <tr>
-            <th class="table__col1">名前</th>
-            <td class="table__col2"><%= @user.last_name %><%= @user.first_name %></td>
+            <th class="user-table-col1">名前</th>
+            <td class="user-table-col2">
+              <%= @user.last_name %>
+              <span class="user-table-col2__name"><%= @user.first_name %></span>
+            </td>
           </tr>
           <tr>
-            <th class="table__col1">好きな県</th>
-            <td class="table__col2">
+            <th class="user-table-col1">住んでいる県</th>
+            <td class="user-table-col2">
             <%= @user.Prefecture.name %></td>
           </tr>
           <tr>
-            <th class="table__col1">プロフィール</th>
-            <td class="table__col2"><%= @user.profile %></td>
+            <th class="user-table-col1">プロフィール</th>
+            <td class="user-table-col2"><%= @user.profile %></td>
           </tr>
         </tbody>
       </table>
-      <h2 class="page-heading">
-        <%= "#{@user.first_name}さんのプロトタイプ"%>
+      <h2 class="user-header">
+        <%= "#{@user.first_name}さんの投稿アイディア"%>
       </h2>
-      <div class="user__card">
-        <%# 部分テンプレートでそのユーザーが投稿したプロトタイプ投稿一覧を表示する %>
+      <div class="user-card-wrapper">
         <%= render partial: "/ideas/idea" , collection: @ideas %>
+      </div>
+      <h2 class="user-header">
+        <%= "#{@user.first_name}さんの投稿作品"%>
+      </h2>
+      <div class="user-card-wrapper">
+        <% @creations.each do |creation| %>
+          <div class="card">
+            <%= image_tag creation.image, class:"card-img-top" %>
+              <span class="user-name">
+                <%= link_to "by #{creation.user.first_name}", "#", class:"name" %>
+              </span>
+            <div class="card-body">
+              <div class="card-title">
+                <span class="card-title-text"><%= creation.idea.catchphrase %></span> 
+              </div>
+              <div class="card-text">
+                <span class="card-text-style">作成にかかった期間</span>
+                <span class="card-text-category"><%= creation.day %></span>
+              </div>
+              <div class="d-grid gap">
+              <%= link_to "作品投稿ページへ", idea_path(creation.idea.id), class:"btn btn-light" %>
+              </div>
+            </div>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>
 </div>
+
+<%= render "shared/footer" %>

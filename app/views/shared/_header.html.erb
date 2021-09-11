@@ -1,0 +1,36 @@
+<nav class="navbar navbar-expand-xl navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href=http://localhost:3000 style="color: white;">MIXUS</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarDark" aria-controls="navbarDark" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse show" id="navbarDark">
+     <% if user_signed_in? %>
+      <ul class="navbar-nav me-auto mb-2 mb-xl-0">
+        <li class="nav-item">
+          <%= link_to "Hello! #{current_user.first_name}", user_path(current_user.id), class:"nav-link active" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "新規投稿", new_idea_path, class:"nav-link active", 'aria-current': :"page" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class:"nav-link active", 'aria-current': :'page' %>
+        </li>
+      </ul>     
+     <% else %>
+      <ul class="navbar-nav me-auto mb-2 mb-xl-0">
+        <li class="nav-item">
+          <%= link_to "ログイン", new_user_session_path, class:"nav-link active", 'aria-current': :"page" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "新規登録", new_user_registration_path ,class:"nav-link active", 'aria-current': :"page" %>
+        </li>
+      </ul>
+      <% end %>
+      <form class="d-flex">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-light" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</nav>

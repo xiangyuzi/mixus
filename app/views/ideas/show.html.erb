@@ -1,37 +1,108 @@
+<%= render "shared/header" %>
+
 <main class="main">
   <div class="inner">
-    <div class="prototype__wrapper">
-      <p class="prototype__hedding">
-        <%= @idea.catchphrase%>
-      </p>
-      <%= link_to "by #{@idea.user.first_name}", user_path(@idea.user.id), class: :prototype__user %>
-      <%# プロトタイプの投稿者とログインしているユーザーが同じであれば以下を表示する %>
-    <% if user_signed_in? && @idea.order == nil %>
-      <% if current_user.id == @idea.user_id %>
-        <P class="idea-edit">
-        <%= link_to "編集する", edit_idea_path, method: :get, class: "item-red-btn" %>
-        <p class="or-text">or</p>
-        <%= link_to "削除する", idea_path, method: :delete, class:"item-destroy" %>
-      <% else %>
-        <p class="much-up">
-        <%= link_to "much up画面に進む", idea_orders_path(@idea.id) ,class:"item-red-btn"%>
+    <div class="item-wrapper">
+      <div class='title-text'>投稿アイディア</div>
+      <div class="idea-image-wrapper">
+        <%= image_tag @idea.image, class:"idea-image" if @idea.image.attached? %>
+      </div>
+      <%= link_to "by #{@idea.user.first_name}", user_path(@idea.user.id), class:"idea-user" %>
+      
+      <%# アイディアの投稿者とログインしているユーザーが同じであれば以下を表示する %>
+      <% if user_signed_in? && @idea.order == nil %>
+        <% if current_user.id == @idea.user_id %>
+          <div class="idea-manage">
+            <%= link_to "編集", edit_idea_path, method: :get, class: "idea-manage-btn" %>
+            <%= link_to "削除", idea_path, method: :delete, class:"idea-manage-btn" %>
+          </div>
+        <% else %>
+          <div class="idea-manage">
+          <%= link_to "MATCH UP !", idea_orders_path(@idea.id) ,class:"match-up-btn" %>
+          </div>
+        <% end %>
       <% end %>
-    <% end %>
 
-      <div class="prototype__image">
-        <%= image_tag @idea.image %>
-      </div>
-      <div class="prototype__body">
-        <div class="prototype__detail">
-          <p class="detail__title">詳細</p>
-          <p class="detail__message">
-            <%= @idea.detail %>
-          <p class="detail__title">この形でつくってほしい！</p>
-            <%= @idea.category.name %>
-          
-          </p>
+      <table class="item-table">
+        <tbody>
+          <tr>
+            <th class="table-col1">キャッチフレーズ</th>
+            <td class="table-col2">
+              <%= @idea.catchphrase %>
+            </td>
+          </tr>
+          <tr>
+            <th class="table-col1">詳細</th>
+            <td class="table-col2">
+            <%= @idea.detail %></td>
+          </tr>
+          <tr>
+            <th class="table-col1">このカタチで見てみたい！</th>
+            <td class="table-col2"><%= @idea.category.name %></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <%# マッチングしたユーザーにのみ以下の作品投稿フォームを表示する %>
+      <% if @idea.order.present? && @idea.creation == nil %>
+        <% if user_signed_in? && current_user.id == @idea.order.user_id %>
+          <%= form_with model: [@idea, @creation],local: true do |f|%>
+          <div class="creation-form-wrapper">
+            <h2 class="creation-form-header">作品投稿フォーム</h2>
+            <div class="form-group">
+              <div class='form-text-wrap'>
+                <label class="form-text">作品の画像</label>
+                <span class="badge bg-dark">必須</span>
+              </div>  
+              <%= f.file_field :image, id:"creation-image" %>
+            </div>
+            <div class="form-group">
+              <div class='form-text-wrap'>
+                <label class="form-text">制作期間</label>
+                <span class="badge bg-dark">必須</span>
+              </div>
+              <%= f.text_field :day, class:"input-default", placeholder: "例）7日間、30時間" %>
+            </div>
+            <div class="form-group">
+              <div class='form-text-wrap'>
+                <label class="form-text">作品詳細</label>
+                <span class="badge bg-dark">必須</span>
+              </div>
+                <%= f.text_area :comment, class:"text-area-text", id:"creation_detail" %>
+            </div>
+            <div class="submit-btn">
+              <%= f.submit "送信する", class:"submit-btn-text" %>
+            </div>
+          </div>
+          <% end %>
+        <% end %>
+      <% end %>
+      <%# マッチングユーザーからの投稿作品がある場合のみ以下の詳細を表示する %>
+      <% if @idea.creation.present? %>
+        <div class="creation-title-text">投稿作品</div>
+        <div class="creation-image-wrapper">
+          <%= image_tag @creations.image, class:"creation-image" %>
         </div>
-      </div>
+        <%= link_to "by #{@creations.user.first_name}", user_path(@creations.user.id), class:"creation-user" %>
+        
+        <table class="item-table">
+          <tbody>
+            <tr>
+              <th class="table-col1">制作期間</th>
+              <td class="table-col2">
+                <%= @idea.creation.day %>
+              </td>
+            </tr>
+            <tr>
+              <th class="table-col1">作品詳細</th>
+              <td class="table-col2">
+              <%= @idea.creation.comment %></td>
+            </tr>
+          </tbody>
+        </table>
+      <% end %>
     </div>
   </div>
 </main>
+
+<%= render "shared/footer" %>

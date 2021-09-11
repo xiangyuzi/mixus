@@ -4,6 +4,7 @@ class Idea < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category
   has_one :order
+  has_one :creation, dependent: :destroy
 
   validates :catchphrase, presence: true
   validates :detail, presence: true

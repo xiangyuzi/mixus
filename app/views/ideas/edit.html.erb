@@ -1,34 +1,48 @@
+<%= render "shared/header" %>
+
 <div class="main">
   <div class="inner">
-    <div class="form__wrapper">
-      <h2 class="page-heading">Let's Post Your Idea!</h2>
-        <%= form_with model: @idea, local: true do |f|%>
-          <div class="field">
-            <%= f.label :image, "アイデアの画像" %><br />
-            <%= f.file_field :image, id:"prototype_image" %>
-          </div>
+    <div class="form-wrapper">
+      <h2 class="new-idea-header">Let's Post Your Idea!</h2>
+      <%= form_with model: @idea, local: true do |f|%>
+        <div class="form-group">
+          <div class='form-text-wrap'>
+            <label class="form-text">アイディアの画像</label>
+            <span class="badge bg-light text-dark">任意</span>
+          </div>        
+          <%= f.file_field :image, id:"idea_image" %>
+        </div>
 
-          <div class="field">
-            <%= f.label :catchphrase, "キャッチフレーズ" %><br />
-            <%= f.text_field :catchphrase, id:"idea_catchphrase" %>
+        <div class="form-group">
+          <div class='form-text-wrap'>
+            <label class="form-text">キャッチフレーズ</label>
+            <span class="badge bg-dark">必須</span>
           </div>
+          <%= f.text_field :catchphrase, class:"input-default", id:"idea_catchphrase" %>
+        </div>
 
-          <div class="field">
-            <%= f.label :detail, "詳細" %><br />
-            <%= f.text_area :detail, class: :form__text, id:"prototype_catch_copy" %>
+        <div class="form-group">
+          <div class='form-text-wrap'>
+            <label class="form-text">アイディア詳細</label>
+            <span class="badge bg-dark">必須</span>
           </div>
+          <%= f.text_area :detail, class:"text-area-text", id:"idea-detail" %>
+        </div>
 
-          <div class="weight-bold-text">
-              この形でつくってほしい！
-              <span class="indispensable">必須</span>
+        <div class="form-group">
+          <div class='form-text-wrap'>
+            <label class="form-text">このカタチで見てみたい！</label>
+            <span class="badge bg-dark">必須</span>
           </div>
-          <%= f.collection_select(:category_id , Category.all, :id, :name, {}, {class:"select-box", id:"user-prefecture"}) %> 
+        <%= f.collection_select(:category_id , Category.all, :id, :name, {}, {class:"select-box", id:"idea-category"}) %> 
+        </div>
 
-
-          <div class="actions">
-            <%= f.submit "保存する", class: :form__btn  %>
-          </div>
-        <% end %>
-      </div>
+        <div class="submit-btn">
+          <%= f.submit "保存する", class:"submit-btn-text"  %>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>
+
+<%= render "shared/footer" %>

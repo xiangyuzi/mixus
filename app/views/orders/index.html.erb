@@ -1,48 +1,58 @@
-<div class='transaction-contents'>
-  <div class='transaction-main'>
-    <h1 class='transaction-title-text'>
-      idea内容の確認
-    </h1>
-    <%# 購入内容の表示 %>
-    <div class='buy-item-info'>
-      <%= image_tag @idea.image, class: 'buy-item-img' %>
-      <div class='buy-item-right-content'>
-        <h2 class='buy-item-text'>
-          <%= @idea.catchphrase %>
-        </h2>
-        <div class='buy-item-price'>
-          <%= @idea.detail %>
-        </div>
-      </div>
-    </div>
-    <%# /購入内容の表示 %>
+<%= render "shared/header" %>
 
-    <%= form_with model: @order, url: idea_orders_path, id: 'charge-form', class: 'transaction-form-wrap',local: true do |f| %>
-    <%= render 'shared/error_messages', model: f.object %>
-    
-    <%# 配送先の入力 %>
-    <div class='shipping-address-form'>
-      <h1 class='info-input-haedline'>
-        much up条件
-      </h1>
-      <div class="form-group">
-        <div class='form-text-wrap'>
-          <label class="form-text">納期</label>
-          <span class="indispensable">必須</span>
-        </div>
-        <%= f.collection_select(:deadline_id, Deadline.all, :id, :name, {}, {class:"select-box", id:"prefecture"}) %>
+<div class="main">
+  <div class="inner">
+    <div class="item-wrapper">
+      <div class='title-text'>Match Up 確認画面</div>
+      <%= image_tag @idea.image, class:"idea-image" %>
+
+      <table class="order-idea-table">
+        <tbody>
+          <tr>
+            <th class="order-idea-table__col1">キャッチフレーズ</th>
+            <td class="order-idea-table__col2">
+              <%= @idea.catchphrase %>
+            </td>
+          </tr>
+          <tr>
+            <th class="order-idea-table__col1">詳細</th>
+            <td class="order-idea-table__col2">
+            <%= @idea.detail %></td>
+          </tr>
+          <tr>
+            <th class="order-idea-table__col1">このカタチで見てみたい！</th>
+            <td class="order-idea-table__col2"><%= @idea.category.name %></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <%# 入力フォーム %>
+      <div class="order-form-wrapper">
+        <%= form_with model: @order, url: idea_orders_path, id: "order-form", class: "order-form",local: true do |f| %>
+          <%= render 'shared/error_messages', model: f.object %><%# エラー文 %>
+          <div class="form-group">
+            <div class='form-text-wrap'>
+              <label class="form-text">納期</label>
+              <span class="badge bg-dark">必須</span>
+            </div>
+            <%= f.collection_select(:deadline_id, Deadline.all, :id, :name, {}, {class:"select-box", id:"prefecture"}) %>
+            <p class="supplementary-text">※作品をつくるのに必要な期間</p>
+          </div>
+          <div class="form-group">
+            <div class='form-text-wrap'>
+              <label class="form-text">連絡先(SNSアカウント email 等)</label>
+              <span class="badge bg-light text-dark">任意</span>
+            </div>
+            <%= f.text_field :email, class:"input-default", id:"city", placeholder:"example@..."%>
+            <p class="supplementary-text">※アイディア投稿者に通知されます</p>
+          </div>
+          <div class='match-up-wrapper'>
+            <%= f.submit "MATCH UP !" ,class:"match-up", id:"button" %>
+          </div>
+        <% end %>
       </div>
-      <div class="form-group">
-        <div class='form-text-wrap'>
-          <label class="form-text">email</label>
-          <span class="indispensable">必須</span>
-        </div>
-        <%= f.text_field :email, class:"input-default", id:"city", placeholder:"example@..."%>
-      </div>
-    <%# /配送先の入力 %>
-    <div class='buy-btn'>
-      <%= f.submit "much up!" ,class:"buy-red-btn", id:"button" %>
     </div>
-    <% end %>
   </div>
 </div>
+
+<%= render "shared/footer" %>
