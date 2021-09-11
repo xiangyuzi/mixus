@@ -23,22 +23,22 @@
         <% end %>
       <% end %>
 
-      <table class="idea-table">
+      <table class="item-table">
         <tbody>
           <tr>
-            <th class="idea-table__col1">キャッチフレーズ</th>
-            <td class="idea-table__col2">
+            <th class="table-col1">キャッチフレーズ</th>
+            <td class="table-col2">
               <%= @idea.catchphrase %>
             </td>
           </tr>
           <tr>
-            <th class="idea-table__col1">詳細</th>
-            <td class="idea-table__col2">
+            <th class="table-col1">詳細</th>
+            <td class="table-col2">
             <%= @idea.detail %></td>
           </tr>
           <tr>
-            <th class="idea-table__col1">このカタチで見てみたい！</th>
-            <td class="idea-table__col2"><%= @idea.category.name %></td>
+            <th class="table-col1">このカタチで見てみたい！</th>
+            <td class="table-col2"><%= @idea.category.name %></td>
           </tr>
         </tbody>
       </table>
@@ -65,7 +65,7 @@
             </div>
             <div class="form-group">
               <div class='form-text-wrap'>
-                <label class="form-text">アイディア詳細</label>
+                <label class="form-text">作品詳細</label>
                 <span class="badge bg-dark">必須</span>
               </div>
                 <%= f.text_area :comment, class:"text-area-text", id:"creation_detail" %>
@@ -79,20 +79,27 @@
       <% end %>
       <%# マッチングユーザーからの投稿作品がある場合のみ以下の詳細を表示する %>
       <% if @idea.creation.present? %>
-        <div class=creation__wrapping>
-          <div class="creation__image">
-            <%= image_tag @creations.image %><br/>
-            <%= link_to "by #{@creations.user.first_name}", user_path(@creations.user.id), class: :prototype__user %>
-          </div>
-          <div class="creation__body">
-            <div class="creation__detail">
-              <p class=detail__days>作成にかかった期間</p>
-                <%= @idea.creation.day %>
-              <p class="detail__comment">作品詳細</p>
-                <%= @idea.creation.comment %>
-            </div>
-          </div>
+        <div class="creation-title-text">投稿作品</div>
+        <div class="creation-image-wrapper">
+          <%= image_tag @creations.image, class:"creation-image" %>
         </div>
+        <%= link_to "by #{@creations.user.first_name}", user_path(@creations.user.id), class:"creation-user" %>
+        
+        <table class="item-table">
+          <tbody>
+            <tr>
+              <th class="table-col1">制作期間</th>
+              <td class="table-col2">
+                <%= @idea.creation.day %>
+              </td>
+            </tr>
+            <tr>
+              <th class="table-col1">作品詳細</th>
+              <td class="table-col2">
+              <%= @idea.creation.comment %></td>
+            </tr>
+          </tbody>
+        </table>
       <% end %>
     </div>
   </div>

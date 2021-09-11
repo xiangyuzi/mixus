@@ -9,20 +9,20 @@
       <table class="table">
         <tbody>
           <tr>
-            <th class="table__col1">名前</th>
-            <td class="table__col2">
+            <th class="user-table-col1">名前</th>
+            <td class="user-table-col2">
               <%= @user.last_name %>
-              <span class="table__col2__name"><%= @user.first_name %></span>
+              <span class="user-table-col2__name"><%= @user.first_name %></span>
             </td>
           </tr>
           <tr>
-            <th class="table__col1">住んでいる県</th>
-            <td class="table__col2">
+            <th class="user-table-col1">住んでいる県</th>
+            <td class="user-table-col2">
             <%= @user.Prefecture.name %></td>
           </tr>
           <tr>
-            <th class="table__col1">プロフィール</th>
-            <td class="table__col2"><%= @user.profile %></td>
+            <th class="user-table-col1">プロフィール</th>
+            <td class="user-table-col2"><%= @user.profile %></td>
           </tr>
         </tbody>
       </table>

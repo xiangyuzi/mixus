@@ -34,9 +34,8 @@
             <label class="form-text">このカタチで見てみたい！</label>
             <span class="badge bg-dark">必須</span>
           </div>
-        <%= f.collection_select(:category_id , Category.all, :id, :name, {}, {class:"select-box", id:"idea-category"}) %> 
-
-
+          <%= f.collection_select(:category_id , Category.all, :id, :name, {}, {class:"select-box", id:"idea-category"}) %> 
+        </div>
         <div class="submit-btn">
           <%= f.submit "保存する", class:"submit-btn-text"  %>
         </div>
