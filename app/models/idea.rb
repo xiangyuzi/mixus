@@ -6,9 +6,10 @@ class Idea < ApplicationRecord
   has_one :order
   has_one :creation, dependent: :destroy
 
-  validates :catchphrase, presence: true
-  validates :detail, presence: true
-  validates :category_id, presence: true
-
+  with_options presence: true do
+    validates :catchphrase
+    validates :detail
+    validates :category_id
+  end
   validates :category_id, numericality: { other_than: 1, message: "can't be blank" }
 end

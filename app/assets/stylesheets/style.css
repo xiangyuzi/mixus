@@ -62,11 +62,13 @@ div.inner {
   width: 95%;
   margin: 0 auto;
  }
+ .slider {
+   margin-top: 20px;
+ }
 .top-pict {
   justify-content: center;
   width: 100%;
   height: 50vw;
-  margin-bottom: 50px;
  }
  /* card */
 div.card-wrapper {
@@ -74,7 +76,7 @@ div.card-wrapper {
   margin: 0 0 20px;
   flex-wrap: wrap;
   justify-content: flex-start;
-  padding: 50px;
+  padding: 30px 70px 50px;
 }
 div.card {
   width: calc((100% - 60px) /3 );

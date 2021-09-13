@@ -2,7 +2,12 @@
 
 <main class="main">
   <div class="inner">
-    <%= image_tag "mixus-top.png", class:"top-pict" %>
+    <div class="slider">
+      <%= image_tag "mixus-top.png", class:"top-pict" %>
+      <%= image_tag "mixus-top2.png", class:"top-pict" %>
+      <%= image_tag "mixus-top3.png", class:"top-pict" %>
+      <%= image_tag "mixus-top4.png", class:"top-pict" %>
+    </div>
     <div class="card-wrapper">
       <%= render partial: "idea", collection: @ideas %>
     </div>

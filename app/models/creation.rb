@@ -3,5 +3,9 @@ class Creation < ApplicationRecord
   belongs_to :idea
   has_one_attached :image
 
-  validates :comment, presence: true
+  with_options presence: true do
+    validates :image
+    validates :day
+    validates :comment
+  end
 end
