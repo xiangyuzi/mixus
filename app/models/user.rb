@@ -4,13 +4,19 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  validates :last_name, presence: true
-  validates :first_name, presence: true
-  validates :birth_date, presence: true
-  validates :prefecture_id, presence: true
-  validates :prefecture_id, numericality: { other_than: 1, message: "can't be blank"}
-
   belongs_to :Prefecture
   has_many :ideas
   has_many :creations
+
+  PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i.freeze
+  validates_format_of :password, with: PASSWORD_REGEX, message: 'is invaild. Include both letters and numbers'
+  
+  with_options presence: true do
+    validates :last_name
+    validates :first_name
+    validates :birth_date
+    validates :prefecture_id
+  end
+    
+  validates :prefecture_id, numericality: { other_than: 1, message: "can't be blank"}
 end
