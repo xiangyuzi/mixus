@@ -7,6 +7,7 @@ class User < ApplicationRecord
   belongs_to :Prefecture
   has_many :ideas
   has_many :creations
+  has_many :orders
 
   PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i.freeze
   validates_format_of :password, with: PASSWORD_REGEX, message: 'is invaild. Include both letters and numbers'
