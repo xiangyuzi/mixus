@@ -1,4 +1,6 @@
 class IdeasController < ApplicationController
+  
+  
   def index
     @ideas = Idea.includes(:user).order(id: 'DESC')
   end

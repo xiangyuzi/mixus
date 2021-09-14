@@ -47,6 +47,7 @@
       <% if @idea.order.present? && @idea.creation == nil %>
         <% if user_signed_in? && current_user.id == @idea.order.user_id %>
           <%= form_with model: [@idea, @creation],local: true do |f|%>
+          <%= render 'shared/error_messages', model: f.object %>
           <div class="creation-form-wrapper">
             <h2 class="creation-form-header">作品投稿フォーム</h2>
             <div class="form-group">
