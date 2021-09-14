@@ -1,6 +1,6 @@
 class Order < ApplicationRecord
-  belongs_to user
-  belongs_to idea
+  belongs_to :user
+  belongs_to :idea
 
   with_options presence: true do
     validates :deadline_id
