@@ -1,7 +1,7 @@
 class IdeasController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_idea, only: [:show, :edit, :update, :destroy]
-  
+
   def index
     @ideas = Idea.includes(:user).order(id: 'DESC')
   end
@@ -41,6 +41,7 @@ class IdeasController < ApplicationController
   end
 
   private
+
   def idea_params
     params.require(:idea).permit(:catchphrase, :detail, :category_id, :image).merge(user_id: current_user.id)
   end

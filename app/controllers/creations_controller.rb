@@ -6,11 +6,12 @@ class CreationsController < ApplicationController
     else
       @idea = @creation.idea
       @creations = @idea.creation
-      render "ideas/show"
+      render 'ideas/show'
     end
   end
 
   private
+
   def creation_params
     params.require(:creation).permit(:comment, :day, :image).merge(user_id: current_user.id, idea_id: params[:idea_id])
   end

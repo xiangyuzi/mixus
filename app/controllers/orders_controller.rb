@@ -16,6 +16,7 @@ class OrdersController < ApplicationController
   end
 
   private
+
   def order_params
     params.require(:order).permit(:deadline_id, :email).merge(user_id: current_user.id, idea_id: params[:idea_id])
   end
