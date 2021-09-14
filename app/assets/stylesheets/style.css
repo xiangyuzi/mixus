@@ -171,6 +171,7 @@ div.card-text span.card-text-category {
 .idea-image {
   display: block;
   margin: 0 auto;
+  max-width: 60%;
 }
 .idea-user {
   display: block;
@@ -242,6 +243,7 @@ div.card-text span.card-text-category {
 .creation-image {
   display: block;
   margin: 0 auto;
+  max-width: 60%;
 }
 .creation-user {
   display: block;
