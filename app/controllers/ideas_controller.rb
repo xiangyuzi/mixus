@@ -1,4 +1,7 @@
 class IdeasController < ApplicationController
+  before_action :authenticate_user!, except: [:index, :show]
+  before_action :set_idea, only: [:show, :edit, :update, :destroy]
+  
   def index
     @ideas = Idea.includes(:user).order(id: 'DESC')
   end
@@ -17,17 +20,14 @@ class IdeasController < ApplicationController
   end
 
   def show
-    @idea = Idea.find(params[:id])
     @creation = Creation.new
     @creations = @idea.creation
   end
 
   def edit
-    @idea = Idea.find(params[:id])
   end
 
   def update
-    @idea = Idea.find(params[:id])
     if @idea.update(idea_params)
       redirect_to idea_path
     else
@@ -36,13 +36,16 @@ class IdeasController < ApplicationController
   end
 
   def destroy
-    idea = Idea.find(params[:id])
-    idea.destroy
+    @idea.destroy
     redirect_to root_path
   end
 
   private
   def idea_params
     params.require(:idea).permit(:catchphrase, :detail, :category_id, :image).merge(user_id: current_user.id)
+  end
+
+  def set_idea
+    @idea = Idea.find(params[:id])
   end
 end

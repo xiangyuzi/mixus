@@ -56,7 +56,7 @@ ActiveRecord::Schema.define(version: 2021_08_03_081658) do
 
   create_table "orders", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "deadline_id", null: false
-    t.string "email", null: false
+    t.string "email"
     t.bigint "user_id", null: false
     t.bigint "idea_id", null: false
     t.datetime "created_at", precision: 6, null: false

@@ -5,6 +5,7 @@ class CreationsController < ApplicationController
       redirect_to idea_path(@creation.idea.id)
     else
       @idea = @creation.idea
+      @creations = @idea.creation
       render "ideas/show"
     end
   end

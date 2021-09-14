@@ -5,6 +5,7 @@
     <div class="form-wrapper">
       <h2 class="new-idea-header">Let's Post Your Idea!</h2>
       <%= form_with model: @idea, local: true do |f|%>
+      <%= render 'shared/error_messages', model: f.object %>
         <div class="form-group">
           <div class='form-text-wrap'>
             <label class="form-text">アイディアの画像</label>
