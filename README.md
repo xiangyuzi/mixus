@@ -100,20 +100,21 @@ VSCode
 | deadline_id | integer    | null: false       |
 | email       | string     |                   |
 | user        | references | foreign_key: true |
-| item        | references | foreign_key: true |
+| idea        | references | foreign_key: true |
 
 ### Association
 
 - belongs_to :user
-- belongs_to :item
+- belongs_to :idea
 
 ## Creationsテーブル
 
 | Column      | Type       | Options           |
 | ----------- | ---------- | ----------------- |
 | comment     | text       | null: false       |
-| deadline_id | integer    | null: false       |
-| order       | references | foreign_key: true |
+| day         | string     | null: false       |
+| user        | references | foreign_key: true |
+| idea        | references | foreign_key: true |
 
 ### Association
 - belongs_to :user
