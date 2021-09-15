@@ -26,13 +26,13 @@ Imaginatorにはアイディア投稿ポイントを、Creatorには作品投稿
 
 # 使用技術(開発環境)
 ## バックエンド
-Ruby、Ruby on Rails
+Ruby 2.6.5、Rails 6.0.0
 ***
 ## フロントエンド
 Html、Css、JavaScript、JQuery
 ***
 ## データベース
-MySQL、SequelPro
+MySQL2、SequelPro
 ***
 ## ソース管理
 GitHub、GitHubDesktop
@@ -49,7 +49,7 @@ VSCode
 - アイディア、作品投稿ユーザーのマッチング機能
 - 投稿詳細ページ
 - ユーザー詳細ページ
-# 今後実装したい機能
+## 実装予定機能
 - 投稿数に応じてユーザーにポイントが加算される機能
 - 保有ポイントがユーザーページにグラフで表示され、投稿の都度更新される機能
 - 作品の動画投稿機能
