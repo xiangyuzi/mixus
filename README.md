@@ -1,5 +1,6 @@
 # アプリ  MIXUS
-![mixus-top](https://user-images.githubusercontent.com/86099522/133256608-89625510-5ed3-476a-a515-e59f4abf51db.png)
+https://user-images.githubusercontent.com/86099522/133541026-b30573ed-ca79-4db0-a2ef-21dd297335e8.mov
+
 <br/>
   
 # 概要
@@ -23,6 +24,8 @@ Imaginatorにはアイディア投稿ポイントを、Creatorには作品投稿
 参考:総務省平成30年版情報通信白書)
 <br/>
 <br/>
+# DEMO
+
 
 # 使用技術(開発環境)
 ## バックエンド
