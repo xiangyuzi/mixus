@@ -21,8 +21,40 @@ Imaginatorにはアイディア投稿ポイントを、Creatorには作品投稿
 参考:総務省平成30年版情報通信白書)
 <br/>
 <br/>
-# DEMO
 
+# DEMO
+### トップページ（アイディア一覧画面）
+![idea-index](https://user-images.githubusercontent.com/86099522/133713080-2dad9279-a702-422c-b9fb-ed689a6596b0.png)
+* アイディアを投稿したらTOP動画の下に一覧表示されます。
+* アイディアの画像がない場合はデフォルトでNO IMAGEが表示されます。
+* 詳細ボタンでアイディアの詳細ページへ遷移します。
+* 画像右下のユーザー名からユーザー詳細ページへ遷移します。
+
+### アイディア詳細画面
+![idea-show-edit](https://user-images.githubusercontent.com/86099522/133713576-b0fc1ad7-ef99-4c1d-bddf-f80fec3f3815.png)
+![idea-show-order](https://user-images.githubusercontent.com/86099522/133713848-284b35ce-de97-482f-9f42-1af06297e397.png)
+* 投稿時に登録した内容が表示されます。
+* 投稿ユーザーには編集・削除ボタンが表示されます。
+* 投稿ユーザー以外にはそのアイディアとのマッチングボタンが表示されます。
+
+### マッチング確認画面
+![idea-order](https://user-images.githubusercontent.com/86099522/133714124-60bd298e-2fb0-45b1-abde-314c548528c0.png)
+* 作品の投稿までにかかる期間を選択します。
+* SNSアカウントなどを記入すれば、投稿ユーザー同士がつながることも可能（記入は任意）
+
+### トップページ（マッチング成立後）
+![idea-index-closed](https://user-images.githubusercontent.com/86099522/133714409-9e0b15a7-81c0-468e-a911-b2388641f19b.png)
+* マッチングが成立したアイディアにはCLOSEの文字が表示されます。
+* CLOSEがついたアイディアは詳細ページに遷移してもマッチングボタンは表示されません。
+
+### 作品投稿フォーム
+![idea-show-creation](https://user-images.githubusercontent.com/86099522/133714732-9dd8f8a0-b721-492a-ac3e-df232a22dbe8.png)
+* マッチングユーザーにのみアイディア詳細ページに投稿フォームが表示されます。
+
+### 作品表示画面
+![idea-creation](https://user-images.githubusercontent.com/86099522/133714916-75cf1bd7-a641-4c14-9352-8c9ff78aed23.png)
+* アイディア詳細の下に投稿作品が表示されます。
+<br/>
 
 # 使用技術(開発環境)
 ## バックエンド
@@ -52,6 +84,7 @@ VSCode
 ## 実装予定機能
 - 投稿数に応じてユーザーにポイントが加算される機能
 - 保有ポイントがユーザーページにグラフで表示され、投稿の都度更新される機能
+- 投稿作品編集機能
 - 作品の動画投稿機能
 - アイディアの検索機能
 - 「いいね」機能
