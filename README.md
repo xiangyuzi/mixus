@@ -72,7 +72,7 @@ Imaginatorにはアイディア投稿ポイントを、Creatorには作品投稿
 Ruby 2.6.5、Rails 6.0.0
 ***
 ## フロントエンド
-Html、Css、JavaScript、JQuery
+HTML、CSS、JavaScript、JQuery、Bootstrap
 ***
 ## データベース
 MySQL2、SequelPro
