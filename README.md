@@ -1,6 +1,5 @@
 # アプリ  MIXUS
-https://user-images.githubusercontent.com/86099522/133541026-b30573ed-ca79-4db0-a2ef-21dd297335e8.mov
-
+https://user-images.githubusercontent.com/86099522/134759763-b9602c60-44a5-4c6e-a637-568057c1801a.mov
   
 # 概要
 **何かを形にしたいけどそのアイディアがない人**(技術力を高めたい"Creator")   
